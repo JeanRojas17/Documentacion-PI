@@ -5,165 +5,165 @@ Este diagrama representa la arquitectura de clases del sistema de información p
 ```mermaid
 classDiagram
     class Usuario {
-        -int id_usuario
-        -string nombre
-        -string apellido
-        -string email
-        -string password
-        -int id_rol
-        -string telefono
-        -string estado
-        -datetime fecha_registro
-        -datetime ultima_conexion
-        +Usuario(nombre, apellido, email, password, id_rol)
+        -int idUsuario
+        -String nombre
+        -String apellido
+        -String email
+        -String password
+        -int idRol
+        -String telefono
+        -String estado
+        -datetime fechaRegistro
+        -datetime ultimaConexion
+        +Usuario(nombre, apellido, email, password, idRol)
         +login(email, password) boolean
         +actualizarUltimaConexion() void
         +cambiarEstado(nuevoEstado) void
-        +getNombreCompleto() string
+        +getNombreCompleto() String
         +validarCredenciales(password) boolean
         +getRol() Rol
     }
     
     class Rol {
-        -int id_rol
-        -string nombre_rol
-        -string descripcion
-        -datetime fecha_creacion
-        +Rol(nombre_rol, descripcion)
+        -int idRol
+        -String nombreRol
+        -String descripcion
+        -datetime fechaCreacion
+        +Rol(nombreRol, descripcion)
         +getPermisos() array
         +asignarPermiso(permiso) void
         +revocarPermiso(permiso) void
     }
     
     class Chofer {
-        -int id_chofer
-        -int id_usuario
-        -string licencia
-        -string estado
-        -date fecha_vencimiento_licencia
-        -int anios_experiencia
-        +Chofer(id_usuario, licencia, fecha_vencimiento)
+        -int idChofer
+        -int idUsuario
+        -String licencia
+        -String estado
+        -date fechaVencimientoLicencia
+        -int aniosExperiencia
+        +Chofer(idUsuario, licencia, fechaVencimiento)
         +validarLicencia() boolean
         +estaDisponible() boolean
         +getAsignaciones() array
         +actualizarExperiencia() void
-        +renovarLicencia(nueva_fecha) void
+        +renovarLicencia(nuevaFecha) void
     }
     
     class Auxiliar {
-        -int id_auxiliar
-        -int id_usuario
-        -string estado
-        -string especialidad
-        +Auxiliar(id_usuario, especialidad)
+        -int idAuxiliar
+        -int idUsuario
+        -String estado
+        -String especialidad
+        +Auxiliar(idUsuario, especialidad)
         +estaDisponible() boolean
         +getAsignaciones() array
-        +cambiarEspecialidad(nueva_especialidad) void
+        +cambiarEspecialidad(nuevaEspecialidad) void
     }
     
     class Camion {
-        -int id_camion
-        -string placa
-        -string marca
-        -string modelo
+        -int idCamion
+        -String placa
+        -String marca
+        -String modelo
         -int anio
-        -decimal capacidad
-        -int id_estado_camion
-        -int id_usuario
+        -double capacidad
+        -int idEstadoCamion
+        -int idUsuario
         -int kilometraje
-        -datetime fecha_registro
+        -datetime fechaRegistro
         +Camion(placa, marca, modelo, anio, capacidad)
         +estaDisponible() boolean
-        +cambiarEstado(nuevo_estado) void
+        +cambiarEstado(nuevoEstado) void
         +actualizarKilometraje(km) void
-        +getCapacidadDisponible() decimal
+        +getCapacidadDisponible() double
         +asignarResponsable(usuario) void
         +necesitaMantenimiento() boolean
         +getHistorialAsignaciones() array
     }
     
     class EstadoCamion {
-        -int id_estado_camion
-        -string estado
-        -string descripcion
+        -int idEstadoCamion
+        -String estado
+        -String descripcion
         +EstadoCamion(estado, descripcion)
         +getCamiones() array
         +esDisponible() boolean
     }
     
     class Ruta {
-        -int id_ruta
-        -string origen
-        -string destino
-        -decimal distancia
-        -string tiempo_estimado
+        -int idRuta
+        -String origen
+        -String destino
+        -double distancia
+        -String tiempoEstimado
         -decimal peaje
         +Ruta(origen, destino, distancia)
-        +calcularCosto() decimal
-        +calcularTiempoEstimado() string
-        +getDescripcion() string
+        +calcularCosto() double
+        +calcularTiempoEstimado() String
+        +getDescripcion() String
         +esDisponible() boolean
         +getAsignaciones() array
     }
     
     class Producto {
-        -int id_producto
-        -string nombre
-        -string tipo
-        -string descripcion
-        -decimal peso
+        -int idProducto
+        -String nombre
+        -String tipo
+        -String descripcion
+        -double peso
         -int cantidad
-        -int id_usuario
-        -datetime fecha_registro
+        -int idUsuario
+        -datetime fechaRegistro
         +Producto(nombre, tipo, peso)
         +actualizarCantidad(cantidad) void
         +estaDisponible() boolean
-        +getPesoTotal() decimal
+        +getPesoTotal() double
         +getStock() int
         +reducirStock(cantidad) boolean
         +aumentarStock(cantidad) void
     }
     
     class Cliente {
-        -int id_cliente
-        -int id_usuario
-        -string nombre_empresa
-        -string nit
-        -string contacto_nombre
-        -string contacto_telefono
-        -string direccion
-        -string ciudad
-        +Cliente(nombre_empresa, nit, contacto_nombre)
+        -int idCliente
+        -int idUsuario
+        -String nombreEmpresa
+        -String nit
+        -String contactoNombre
+        -String contactoTelefono
+        -String direccion
+        -String ciudad
+        +Cliente(nombreEmpresa, nit, contactoNombre)
         +getEntregas() array
-        +getDireccionCompleta() string
+        +getDireccionCompleta() String
         +actualizarContacto(nombre, telefono) void
         +getHistorialPedidos() array
     }
     
     class Asignacion {
-        -int id_asignacion
-        -int id_camion
-        -int id_chofer
-        -int id_auxiliar
-        -int id_ruta
-        -int id_usuario
-        -string estado
+        -int idAsignacion
+        -int idCamion
+        -int idChofer
+        -int idAuxiliar
+        -int idRuta
+        -int idUsuario
+        -String estado
         -datetime fecha
-        -datetime fecha_salida
-        -datetime fecha_llegada
-        -string observaciones
-        +Asignacion(id_camion, id_chofer, id_ruta, fecha_salida)
+        -datetime fechaSalida
+        -datetime fechaLlegada
+        -String observaciones
+        +Asignacion(idCamion, idChofer, idRuta, fechaSalida)
         +crear() boolean
         +actualizar() boolean
         +eliminar() boolean
-        +cambiarEstado(nuevo_estado) void
+        +cambiarEstado(nuevoEstado) void
         +agregarProducto(producto, cantidad) void
         +eliminarProducto(producto) void
         +getProductos() array
         +getCamion() Camion
         +getChofer() Chofer
         +getRuta() Ruta
-        +calcularPesoTotal() decimal
+        +calcularPesoTotal() double
         +validarCapacidad() boolean
         +iniciar() void
         +completar() void
@@ -171,24 +171,24 @@ classDiagram
     }
     
     class AsignacionProducto {
-        -int id_asignacion_producto
-        -int id_asignacion
-        -int id_producto
+        -int idAsignacionProducto
+        -int idAsignacion
+        -int idProducto
         -int cantidad
-        +AsignacionProducto(id_asignacion, id_producto, cantidad)
-        +getPesoTotal() decimal
+        +AsignacionProducto(idAsignacion, idProducto, cantidad)
+        +getPesoTotal() double
         +validarCantidad() boolean
     }
     
     class Entrega {
-        -int id_entrega
-        -int id_asignacion
-        -int id_cliente
-        -int id_estado_entrega
-        -datetime fecha_programada
-        -datetime fecha_entrega
-        -string observaciones
-        +Entrega(id_asignacion, id_cliente, fecha_programada)
+        -int idEntrega
+        -int idAsignacion
+        -int idCliente
+        -int idEstadoEntrega
+        -datetime fechaProgramada
+        -datetime fechaEntrega
+        -String observaciones
+        +Entrega(idAsignacion, idCliente, fechaProgramada)
         +programar() boolean
         +entregar() boolean
         +rechazar(motivo) void
@@ -200,8 +200,8 @@ classDiagram
     }
     
     class EstadoEntrega {
-        -int id_estado_entrega
-        -string estado
+        -int idEstadoEntrega
+        -String estado
         +EstadoEntrega(estado)
         +getEntregas() array
         +esEstadoFinal() boolean
@@ -212,14 +212,14 @@ classDiagram
         +login(email, password) Usuario
         +logout(usuario) void
         +validarSesion(token) boolean
-        +cambiarPassword(usuario, nueva_password) boolean
+        +cambiarPassword(usuario, nuevaPassword) boolean
         +recuperarPassword(email) void
     }
     
     class AsignacionService {
         -Connection db_connection
-        +crear(asignacion_data) Asignacion
-        +actualizar(id, asignacion_data) boolean
+        +crear(asignacionData) Asignacion
+        +actualizar(id, asignacionData) boolean
         +eliminar(id) boolean
         +listar(filtros) array
         +obtenerPorId(id) Asignacion
@@ -229,8 +229,8 @@ classDiagram
     
     class CamionService {
         -Connection db_connection
-        +crear(camion_data) Camion
-        +actualizar(id, camion_data) boolean
+        +crear(camionData) Camion
+        +actualizar(id, camionData) boolean
         +eliminar(id) boolean
         +listar(filtros) array
         +obtenerDisponibles() array
@@ -240,8 +240,8 @@ classDiagram
     
     class ProductoService {
         -Connection db_connection
-        +crear(producto_data) Producto
-        +actualizar(id, producto_data) boolean
+        +crear(productoData) Producto
+        +actualizar(id, productoData) boolean
         +eliminar(id) boolean
         +listar(filtros) array
         +actualizarStock(id, cantidad) boolean
@@ -250,13 +250,13 @@ classDiagram
     
     class ReporteService {
         -Connection db_connection
-        +generarReporteAsignaciones(fecha_inicio, fecha_fin) array
+        +generarReporteAsignaciones(fechaInicio, fechaFin) array
         +generarReporteProductos() array
         +generarReporteCamiones() array
         +generarReporteChoferes() array
         +getEstadisticasDashboard() array
-        +exportarPDF(tipo_reporte, datos) file
-        +exportarExcel(tipo_reporte, datos) file
+        +exportarPDF(tipoReporte, datos) file
+        +exportarExcel(tipoReporte, datos) file
     }
     
     class DashboardService {
@@ -266,7 +266,7 @@ classDiagram
         +getEntregasCompletadas() int
         +getEntregasPendientes() int
         +getCamionesDisponibles() int
-        +getCapacidadDisponible() decimal
+        +getCapacidadDisponible() double
     }
     
     %% Relaciones
